@@ -1,0 +1,1 @@
+Aula de paradigmas das linguagens de programação
