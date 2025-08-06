@@ -33,10 +33,10 @@ int main (){
     scanf("%d",&option);
     switch (option){
         case 1:
-            printf("%d",fatorialIterativa(num));
+            printf("%d\n",fatorialIterativa(num));
             break;
         case 2:
-            printf("%d",fatorialRecursiva(num));
+            printf("%d\n",fatorialRecursiva(num));
             break;
         default:
             printf("Programa encerrado");
