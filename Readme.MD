@@ -1,6 +1,7 @@
 Trabalho final 1º Bimestre
 
 Arquivos Criados:
+
     Migrations - paradigmas-prog-20252/database/migrations/2025_09_10_020725_create_company_table.php
     Seeder - paradigmas-prog-20252/database/seeders/CompanyTableSeeder.php
     Model - paradigmas-prog-20252/app/Models/Company.php
@@ -12,6 +13,7 @@ Arquivos Criados:
     Update Request - paradigmas-prog-20252/app/Http/Requests/UpdateCompanyRequest.php
 
 Arquivos modificados
+
     Rotas - paradigmas-prog-20252/routes/api.php
         Linhas adicionadas:
             13 Route::get('/companies', [CompanyController::class, 'index']);
