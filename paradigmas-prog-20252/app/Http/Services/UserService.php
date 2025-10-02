@@ -3,10 +3,11 @@
 namespace App\Http\Services;
 
 use App\Http\Repositories\UserRepository;
+use App\Interfaces\Service;
 use App\Models\User;
 use PhpParser\Node\Expr\FuncCall;
 
-class UserService {
+class UserService implements Service {
 
     public function __construct(private UserRepository $userRepository) {}
 
