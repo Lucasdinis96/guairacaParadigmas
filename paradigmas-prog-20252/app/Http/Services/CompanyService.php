@@ -3,27 +3,17 @@ namespace App\Http\Services;
 
 use App\Http\Repositories\CompanyRepository;
 
-class CompanyService {
+class CompanyService extends BaseService {
 
-    public function __construct(private CompanyRepository $companyRepository) {}
+    protected CompanyRepository $companyRepository;
+
+    public function __construct(CompanyRepository $companyRepository) {
+        parent::__construct($companyRepository);
+        $this->companyRepository = $companyRepository;
+    }
 
     public function index(array $data) {
         return $this->companyRepository->index($data);
     }
 
-    public function store(array $data) {
-        return $this->companyRepository->store($data);
-    }
-
-    public function show (string $id){
-        return $this->companyRepository->show($id);
-    }
-
-    public function update (array $data, string $id){
-        return $this->companyRepository->update($data, $id);
-    }
-
-    public function destroy (string $id){
-        $this->companyRepository->destroy($id);
-    }
 }

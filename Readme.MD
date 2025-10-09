@@ -1,1 +1,1 @@
-Criação de interfaces no back-end
+Utilização de baseSErvice e BaseRepository

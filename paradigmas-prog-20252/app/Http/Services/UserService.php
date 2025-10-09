@@ -3,38 +3,17 @@
 namespace App\Http\Services;
 
 use App\Http\Repositories\UserRepository;
-use App\Interfaces\Service;
-use App\Models\User;
-use PhpParser\Node\Expr\FuncCall;
 
-class UserService implements Service {
+class UserService extends BaseService{
 
-    public function __construct(private UserRepository $userRepository) {}
+    protected UserRepository $userRepository;
+
+    public function __construct(UserRepository $userRepository) {
+        parent::__construct($userRepository);
+        $this->userRepository = $userRepository;
+    }
 
     public function index(array $data) {
-        //return User::all();
         return $this->userRepository->index($data);
-    }
-
-    public function store(array $data) {
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => bcrypt($data['password']) 
-        // ]);
-
-        return $this->userRepository->store($data);
-    }
-
-    public function show (string $id){
-        return $this->userRepository->show($id);
-    }
-
-    public function update (array $data, string $id){
-        return $this->userRepository->update($data, $id);
-    }
-
-    public function destroy (string $id){
-        $this->userRepository->destroy($id);
     }
 }

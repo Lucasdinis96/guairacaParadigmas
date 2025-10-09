@@ -19,7 +19,6 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => fake()->company(),
-            'responsible_id' => User::inRandomOrder()->first()->id,
             'licensed' => fake()->boolean()
 
         ];

@@ -2,24 +2,14 @@
 
 namespace App\Http\Repositories;
 
-use App\Interfaces\Repository;
 use App\Models\User;
-use Illuminate\Support\Arr;
 
-class UserRepository implements Repository{
-    public function __construct(private User $model) {
-                
+class UserRepository extends BaseRepository{
+    public function __construct(User $model) {
+        parent::__construct($model);
     }
 
     public function index(array $data){
-        //dd($data);        //1ª forma - chamada pela model direto
-        //return User::all();
-        //2ª forma - chamada pela variavel do construtor
-        /*return $this->model
-        ->where('name', $data['name'])
-        ->where('email', $data['email'])
-        ->get();*/
-
         return $this->model->where(function ($query) use($data){
             if (isset ($data['id'])) {
                 $query->where('id', $data['id']);
@@ -36,28 +26,28 @@ class UserRepository implements Repository{
         })->get();
     }
 
-    public function store(array $data) {
-          return $this->model->create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']) 
-        ]);
-    }
+    // public function store(array $data) {
+    //       return $this->model->create([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => bcrypt($data['password']) 
+    //     ]);
+    // }
 
-    public function show (string $id){
-        return $this->model->findOrFail($id);
-    }
+    // public function show (string $id){
+    //     return $this->model->findOrFail($id);
+    // }
     
-    public function update(array $data, string $id){
-        $user = $this->show($id);
-        $user->update($data);
-        return $user->fresh();
-    }
+    // public function update(array $data, string $id){
+    //     $user = $this->show($id);
+    //     $user->update($data);
+    //     return $user->fresh();
+    // }
 
-    public function destroy (string $id){
-        // $user = $this->show($id);
-        // $user->delete();
+    // public function destroy (string $id){
+    //     // $user = $this->show($id);
+    //     // $user->delete();
 
-        $this->show($id)->delete();
-    }
+    //     $this->show($id)->delete();
+    // }
 }

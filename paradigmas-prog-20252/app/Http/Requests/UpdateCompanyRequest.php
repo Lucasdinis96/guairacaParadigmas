@@ -24,14 +24,27 @@ class UpdateCompanyRequest extends FormRequest
     {
         return [
             'name' =>[ 
-                'sometimes','max:100','string'
-            ],
-            'responsible_id' => [
-                'sometimes','int'
+                'sometimes',
+                'string',
+                'max:50',
+                'min:2',
+                Rule::unique('companies','name')->ignore($this->route('companies'))
             ],
             'licensed' => [
-                'sometimes'
+                'required','in:true,false'
             ]
         ];
+    }
+
+    public function messages() {
+        
+        return [
+            'name.string' => 'O campo nome deve conter um texto',
+            'name.unique' => 'Já existe uma empresa com este nome',
+            'name.max' => 'O campo nome deve conter no :max caracteres',
+            'name.min' => 'O campo nome deve conter no :min caracteres',
+            'licensed.in' => 'O campo licenciada deve ser true ou false'
+        ];
+
     }
 }

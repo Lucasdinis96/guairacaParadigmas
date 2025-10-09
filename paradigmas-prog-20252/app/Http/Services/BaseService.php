@@ -4,14 +4,13 @@ namespace App\Http\Services;
 
 use App\Http\Repositories\BaseRepository;
 use App\Interfaces\Service;
-use Illuminate\Database\Eloquent\Model;
 
-class BaseService implements Service {
+abstract class BaseService implements Service {
 
-    private BaseRepository $repository;
+    protected BaseRepository $repository;
 
-    public function __construct(Model $model){
-        $this->repository = new BaseRepository($model);
+    public function __construct(BaseRepository $repository){
+        $this->repository = $repository;
     }  
      
     // public function index(array $data) {

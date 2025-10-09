@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Exists;
 
 class CreateCompanyRequest extends FormRequest
 {
@@ -24,14 +23,25 @@ class CreateCompanyRequest extends FormRequest
     {
         return [
             'name' =>[ 
-                'required','max:100','string'
-            ],
-            'responsible_id' => [
-                'required','int','exists:users,id'
+                'string','unique:companies,name','name|max:50|min:2'
             ],
             'licensed' => [
-                'required'
+                'required','in:true,false'
             ]
         ];
+    }
+
+    public function messages() {
+        
+        return [
+            'name.required' => 'O campo nome é obrigatório',
+            'name.string' => 'O campo nome deve conter um texto',
+            'name.unique' => 'Já existe uma empresa com este nome',
+            'name.max' => 'O campo nome deve conter no :max caracteres',
+            'name.min' => 'O campo nome deve conter no :min caracteres',
+            'licensed.required' => 'O campo licenciada é obrigatório',
+            'licensed.in' => 'O campo licenciada deve ser true ou false'
+        ];
+
     }
 }
