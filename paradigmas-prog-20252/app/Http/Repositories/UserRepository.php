@@ -10,10 +10,7 @@ class UserRepository extends BaseRepository{
     }
 
     public function index(array $data){
-        return $this->model->where(function ($query) use($data){
-            if (isset ($data['id'])) {
-                $query->where('id', $data['id']);
-            }
+        $users = $this->model->where(function ($query){
     
             if (isset ($data['name'])) {
                 $query->where('name', 'like', $data['name'].'%');
@@ -23,7 +20,8 @@ class UserRepository extends BaseRepository{
                 $query->where('email', $data['email']);
             }
 
-        })->get();
+        });
+        return isset($data['per_page']) ? $users->paginate($data['per_page']) : $users->get();
     }
 
     // public function store(array $data) {

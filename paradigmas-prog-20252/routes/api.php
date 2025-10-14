@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 // Route::put('/companies/{id}', [CompanyController::class, 'update']);
 // Route::get('/companies/{id}', [CompanyController::class, 'show']);
 
-Route::apiResource('users',UserController::class);
+Route::apiResource('users', UserController::class);
 Route::apiResource('companies', CompanyController::class);

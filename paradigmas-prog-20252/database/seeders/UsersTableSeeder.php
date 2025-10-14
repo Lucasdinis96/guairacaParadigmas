@@ -12,6 +12,23 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->count(500)->create();
+
+        // $user = [
+        //     'name' => 'manager',
+        //     'email' => 'manager@email.com',
+        //     'password' => bcrypt('123456'),
+        //     'company_id' => $company->id
+        // ];
+
+        // $company =Company::create [
+        //     'name' => 'company',
+        //     'licensed' = true
+        // ];
+
+        User::factory()->count(20)->create();
     }
+
+    // private function create (array $data) {
+    //     User::create ($data);
+    // }
 }
