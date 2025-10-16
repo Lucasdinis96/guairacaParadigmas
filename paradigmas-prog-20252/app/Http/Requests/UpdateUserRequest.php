@@ -44,7 +44,8 @@ class UpdateUserRequest extends FormRequest
              'password_confirmation' => [
                 'required_with:password',
                 'same:password'
-            ] 
+             ],
+             'type' => ['sometime', 'in:admin,manager']
         ];
     }
 }

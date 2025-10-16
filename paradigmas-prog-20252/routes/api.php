@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\UserController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/users', [UserController::class, 'index']);
@@ -16,5 +17,13 @@ use Illuminate\Support\Facades\Route;
 // Route::put('/companies/{id}', [CompanyController::class, 'update']);
 // Route::get('/companies/{id}', [CompanyController::class, 'show']);
 
-Route::apiResource('users', UserController::class);
-Route::apiResource('companies', CompanyController::class);
+
+
+Route::post('/login', [Login::class, 'login']);
+
+Route::middleware(['auth:sanctum','user.type:manager'])->group(function(){
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('companies', CompanyController::class);
+});
+
+

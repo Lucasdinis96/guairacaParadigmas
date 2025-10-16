@@ -29,7 +29,8 @@ class UserController extends Controller
         return new UserResource($this->userService->store([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']) 
+            'password' => bcrypt($data['password']),
+            'type'
         ]));
     }
 

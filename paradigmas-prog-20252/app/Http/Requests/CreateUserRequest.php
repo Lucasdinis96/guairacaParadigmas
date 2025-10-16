@@ -33,7 +33,8 @@ class CreateUserRequest extends FormRequest
             'password_confirmation' => [
                 'required',
                 'same:password'
-            ] 
+            ],
+            'type' => ['nullable', 'in:admin,manager']
         ];
     }
 }
